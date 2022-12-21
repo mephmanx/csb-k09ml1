@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.43.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>Chris</title>
+</head>
+<body>
+
+<div>
+    <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
+       <div class="px-3 py-3 lg:px-5 lg:pl-3">
+          <div class="flex items-center justify-between">
+             <div class="flex items-center justify-start">
+                <button id="toggleSidebarMobile" aria-expanded="true" aria-controls="sidebar" class="lg:hidden mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded">
+                   <svg id="toggleSidebarMobileHamburger" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                   </svg>
+                   <svg id="toggleSidebarMobileClose" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                   </svg>
+                </button>
+                <a href="#" class="text-xl font-bold flex items-center lg:ml-2.5">
+                <img src="" class="h-6 mr-2" alt=" Logo">
+                <span class="self-center whitespace-nowrap">LOGO</span>
+                </a>
+                <form action="#" method="GET" class="hidden lg:block lg:pl-32">
+                   <label for="topbar-search" class="sr-only">Search</label>
+                   <div class="mt-1 relative lg:w-64">
+                      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                         <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                         </svg>
+                      </div>
+                      <input type="text" name="email" id="topbar-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full pl-10 p-2.5" placeholder="Search">
+                   </div>
+                </form>
+             </div>
+             <div class="flex items-center">
+                <button id="toggleSidebarMobileSearch" type="button" class="lg:hidden text-gray-500 hover:text-gray-900 hover:bg-gray-100 p-2 rounded-lg">
+                   <span class="sr-only">Search</span>
+                   <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                   </svg>
+                </button>
+                
+
+             </div>
+          </div>
+       </div>
+    </nav>
+
+
+<!-- Sidebar starts-->
+
+    <div class="flex overflow-hidden bg-white pt-16">
+       <aside id="sidebar" class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75" aria-label="Sidebar">
+          <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
+             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                <div class="flex-1 px-3 bg-white divide-y space-y-1">
+                   <ul class="space-y-2 pb-2">
+                      <li>
+                         <form action="#" method="GET" class="lg:hidden">
+                            <label for="mobile-search" class="sr-only">Search</label>
+                            <div class="relative">
+                               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                     <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                                  </svg>
+                               </div>
+                               <input type="text" name="email" id="mobile-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:ring-cyan-600 block w-full pl-10 p-2.5" placeholder="Search">
+                            </div>
+                         </form>
+                      </li>
+                      <li>
+                         <a href="index.html" class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
+                            
+                            <span class="ml-3">Dashboard</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a href="profile.html"  class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+    
+                            <span class="ml-3 flex-1 whitespace-nowrap">Profile</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a href="Notifications.html"  class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                           
+                            <span class="ml-3 flex-1 whitespace-nowrap">Notifications</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a href="Activity.html" class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                            
+                            <span class="ml-3 flex-1 whitespace-nowrap">Activity Log</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a href="Vault.html" class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                            
+                            <span class="ml-3 flex-1 whitespace-nowrap">Vault</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a href="Setting.html" class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                            
+                            <span class="ml-3 flex-1 whitespace-nowrap">Setting</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a href="#" class="text-base text-gray-900 font-normal rounded-lg hover:bg-red-100 flex items-center p-2 group ">
+                            
+                            <span class="ml-3 flex-1 whitespace-nowrap">Log out</span>
+                         </a>
+                      </li>
+                   </ul>
+                    
+                </div>
+             </div>
+          </div>
+       </aside>
+       <!-- Sidebar Ends-->
+
+       <!-- Leftbar Starts-->
+
+       <aside id="sidebar" class="fixed hidden z-20 h-full top-0 right-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75" aria-label="Sidebar">
+         <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
+            <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+               <div class="flex-1 px-3 bg-white divide-y space-y-1">
+                  <ul class="space-y-2 pb-2 flex flex-col overflow-auto">
+                     <li>
+                        <div class="space-y-4">
+                          <h1 class="text-black text-2xl space-y-4">Notifications </h1> 
+                           <div class="ml-2 mr-2  shadow-sm ">
+                              <p>
+                                 <b>
+                                    A new device sign-n
+                                 </b>
+                              </p>
+                           </div>
+                           <div class="ml-2 mr-2 shadow-sm">
+                              <p>
+                                 <b>
+                                    Mr. Adam viewed AWS 
+                                 </b>
+                              </p>
+                           </div>
+                        </div>
+
+                     </li>
+                     <li>
+                        <div class="space-y-4 mt-3">
+                           <h1 class="text-black text-2xl">Activity </h1>
+                           <div class="ml-2 mr-2 shadow-sm">
+                              <p>
+                                 <b>
+                                    A new Secret added
+                                 </b>
+                              </p>
+                           </div>
+
+                           <div class="ml-2 mr-2 shadow-sm">
+                              <p>
+                                 <b>
+                                    A new Secret added
+                                 </b>
+                              </p>
+                           </div>
+                        </div>
+                        </a>
+                     </li>
+                    
+                  </ul>
+                   
+               </div>
+            </div>
+         </div>
+      </aside> 
+       <!-- Leftbar Ends-->
+
+       <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
+       <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-auto lg:ml-64 lg:mr-64">
+          <main>
+            
+            <div class="flex justify-end pr-5 mt-4"> 
+               <div class="dropdown items-end">
+                  <label tabindex="0" class="btn bg-blue-600 text-white m-1 hover:bg-blue-500">Add
+                     <svg class="w-4 h-3 mx-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                    </svg>
+                  </label>
+                  <ul tabindex="0" class="dropdown-content menu p-2  bg-white rounded-box w-52">
+                    <li><a>Bar </a></li>
+                    <li><a>Line </a></li>
+                    <li><a>Pie </a></li>
+                    <li><a>Stats </a></li>
+                  </ul>
+                </div>
+               
+            </div>
+             <div class="pt-6 px-4">
+                <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+                   <div class="  rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+
+                      <div class="flex items-center justify-between ">
+                         <div class="flex-shrink-0">
+                           
+                         </div>
+                         <div class="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+                           
+                         </div>
+                      </div>
+                      <div id="">
+
+                        <div class="shadow-lg rounded-lg overflow-hidden">
+                            <div class="py-3 px-5 bg-black">
+                                <span class="text-2xl sm:text-3xl leading-none font-bold text-white">$45,385</span>
+                                <h3 class="text-base font-normal text-white">Sales this week</h3>
+
+
+                            </div>
+                            <canvas class="p-10" id="chartBar"></canvas>
+                          </div>
+                          
+                          <!-- Required chart.js -->
+                          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                          
+                          <!-- Chart bar -->
+                          <script>
+                            const labelsBarChart = [
+                              "January",
+                              "February",
+                              "March",
+                              "April",
+                              "May",
+                              "June",
+                            ];
+                            const dataBarChart = {
+                              labels: labelsBarChart,
+                              datasets: [
+                                {
+                                  label: "My First dataset",
+                                  backgroundColor: "hsl(252, 82.9%, 67.8%)",
+                                  borderColor: "hsl(252, 82.9%, 67.8%)",
+                                  data: [0, 10, 5, 2, 20, 30, 45],
+                                },
+                              ],
+                            };
+                          
+                            const configBarChart = {
+                              type: "bar",
+                              data: dataBarChart,
+                              options: {},
+                            };
+                          
+                            var chartBar = new Chart(
+                              document.getElementById("chartBar"),
+                              configBarChart
+                            );
+                          </script>
+                      </div>
+                   </div>
+                   <div class="  rounded-lg p-4 sm:p-6 xl:p-4 ">
+                      <div class="mb-4 flex items-center justify-between">
+                        <div class="shadow-lg rounded-lg overflow-hidden">
+                            <div class="py-3 px-5 bg-black  text-white">Languages</div>
+                            <canvas class="p-5" id="chartDoughnut"></canvas>
+                          </div>
+                    
+                          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                                
+                          <script>
+                            const dataDoughnut = {
+                              labels: ["JavaScript", "Python", "Ruby"],
+                              datasets: [
+                                {
+                                  label: "My First Dataset",
+                                  data: [300, 50, 100],
+                                  backgroundColor: [
+                                    "rgb(133, 105, 241)",
+                                    "rgb(164, 101, 241)",
+                                    "rgb(101, 143, 241)",
+                                  ],
+                                  hoverOffset: 4,
+                                },
+                              ],
+                            };
+                          
+                            const configDoughnut = {
+                              type: "doughnut",
+                              data: dataDoughnut,
+                              options: {},
+                            };
+                          
+                            var chartBar = new Chart(
+                              document.getElementById("chartDoughnut"),
+                              configDoughnut
+                            );
+                          </script>
+                      </div>
+                      <div class="flex flex-col mt-8">
+                         <div class="overflow-x-auto rounded-lg">
+                            <div class="align-middle inline-block min-w-full">
+                               <div class="shadow overflow-hidden sm:rounded-lg">
+                                  
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                   <div class="bg-white   rounded-lg p-4 sm:p-6 xl:p-8 ">
+                      <div class="flex items-center">
+                         <div class="flex-shrink-0">
+                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">2,340</span>
+                            <h3 class="text-base font-normal text-gray-500">New products this week</h3>
+                         </div>
+                         <div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+                            14.6%
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                               <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="bg-white   rounded-lg p-4 sm:p-6 xl:p-8 ">
+                      <div class="flex items-center">
+                         <div class="flex-shrink-0">
+                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">5,355</span>
+                            <h3 class="text-base font-normal text-gray-500">Visitors this week</h3>
+                         </div>
+                         <div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
+                            32.9%
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                               <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="bg-white   rounded-lg p-4 sm:p-6 xl:p-8 ">
+                      <div class="flex items-center">
+                         <div class="flex-shrink-0">
+                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">385</span>
+                            <h3 class="text-base font-normal text-gray-500">User signups this week</h3>
+                         </div>
+                         <div class="ml-5 w-0 flex items-center justify-end flex-1 text-red-500 text-base font-bold">
+                            -2.7%
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                               <path fill-rule="evenodd" d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+                <div class="grid grid-cols-1 w-auto 2xl:grid-cols-3 xl:gap-3 my-4">
+                  
+                    <div class="  rounded-lg p-4 sm:p-6 xl:p-8 ">
+                        <div class="rounded-lg shadow-sm mb-4">
+                            <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                                <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                                    <h4 class="text-sm uppercase text-gray-500 leading-tight">Subscribers</h4>
+                                    <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">11,427</h3>
+                                    <p class="text-xs text-red-500 leading-tight">▼ 42.8%</p>
+                                </div>
+                                <div class="absolute bottom-0 inset-x-0">
+                                    <canvas id="chart2" height="70"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                   
+                   <div class="  rounded-lg p-4 sm:p-6 xl:p-8">
+                    <div class="rounded-lg shadow-sm mb-4">
+                        <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                            <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                                <h4 class="text-sm uppercase text-gray-500 leading-tight">Total visits</h4>
+                                <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">45890</h3>
+                                <p class="text-xs text-red-500 leading-tight">▼ 42.8%</p>
+                            </div>
+                            <div class="absolute bottom-0 inset-x-0">
+                                <canvas id="chart2" height="70"></canvas>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               
+                <div class="  rounded-lg p-4 sm:p-6 xl:p-8">
+                    <div class="rounded-lg shadow-sm mb-4">
+                        <div class="rounded-lg bg-white shadow-lg md:shadow-xl relative overflow-hidden">
+                            <div class="px-3 pt-8 pb-10 text-center relative z-10">
+                                <h4 class="text-sm uppercase text-gray-500 leading-tight">Subscribers</h4>
+                                <h3 class="text-3xl text-gray-700 font-semibold leading-tight my-3">11,427</h3>
+                                <p class="text-xs text-red-500 leading-tight">▼ 42.8%</p>
+                            </div>
+                            <div class="absolute bottom-0 inset-x-0">
+                                <canvas id="chart2" height="70"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+             </div>
+          </main>
+          <footer class=" md:flex md:items-center md:justify-between   rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
+              
+          </footer>
+          <p class="text-center text-sm text-gray-500 my-10">
+           
+          </p>
+       </div>
+    </div>
+     
+    <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+ </div>
+
+</body>
+</html>
